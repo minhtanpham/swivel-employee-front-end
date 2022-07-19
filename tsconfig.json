@@ -18,6 +18,13 @@
     "downlevelIteration": true,
     "baseUrl": "./",
     "rootDir": "./",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/public/*": ["public/*"],
+      "@/styles/*": ["styles/*"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"]
+    },
     "incremental": true
   },
   "exclude": ["node_modules", ".next", "out", "cypress"],

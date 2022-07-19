@@ -17,8 +17,6 @@
     "lint:cypress": "yarn type-check --project cypress/tsconfig.json",
     "test": "jest",
     "test-all": "yarn format-check && yarn lint && yarn type-check && yarn test",
-    "codegen": "graphql-codegen --config ./graphql/codegen.yml",
-    "server": "node ./server/server.js",
     "prepare": "husky install",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
@@ -77,6 +75,8 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.9.0",
+    "axios": "^0.27.2",
+    "next": "^12.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.33.1"

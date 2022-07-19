@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .heading-1 {
+    @apply text-4xl font-black;
+  }
+  .heading-2 {
+    @apply text-3xl font-bold;
+  }
+  .heading-3 {
+    @apply text-2xl font-semibold;
+  }
+  .heading-4 {
+    @apply text-xl font-normal;
+  }
+  .heading-5 {
+    @apply text-lg font-normal;
+  }
+  .heading-6 {
+    @apply text-base font-normal;
+  }
+}

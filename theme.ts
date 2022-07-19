@@ -1,14 +1,14 @@
-import { createTheme } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#64B7FB'
+      main: '#00796b'
     },
     secondary: {
-      main: '#19857b'
+      main: '#004c40'
     },
     error: {
       main: red.A400
