@@ -5,18 +5,31 @@ import Link from 'next/link';
 import useRequest from '../../utils/hooks/useRequest';
 
 const EmployeeListPage: FC<any> = () => {
-  const { loading, data, error } = useRequest(
+  const { loading, data, error, run } = useRequest(
     axios.get('https://swivel-backend.herokuapp.com/employee')
   );
+
+  const handleClick = () => {
+    run();
+  };
+
+  console.log(loading);
+  console.log(data);
+  console.log(error);
 
   return (
     <div className="flex justify-center items-center flex-col bg-white shadow-lg p-6 rounded-md">
       <Typography>Welcome to Swivel Management</Typography>
-      <Link href="/employee/list">
-        <Button className="mt-4" color="primary" variant="contained">
-          Visit
-        </Button>
-      </Link>
+      {/* <Link href="/employee/list"> */}
+      <Button
+        className="mt-4"
+        color="primary"
+        variant="contained"
+        onClick={handleClick}
+      >
+        Visit
+      </Button>
+      {/* </Link> */}
     </div>
   );
 };
