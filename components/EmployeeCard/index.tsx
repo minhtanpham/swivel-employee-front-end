@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react';
-import { MdPermPhoneMsg, MdEmail } from 'react-icons/md';
+import { MdPermPhoneMsg, MdEmail, MdOutlinePeople } from 'react-icons/md';
 
 import { Typography } from '@mui/material';
 
 import type { EmployeeCardProps } from './employee-card';
 
 const EmployeeCard: FC<EmployeeCardProps> = ({ data, type = 'list' }) => {
-  const { first_name, last_name, number, email, photo } = data;
+  const { first_name, last_name, number, email, photo, gender } = data;
 
   if (type === 'list') {
     return (
@@ -28,6 +28,12 @@ const EmployeeCard: FC<EmployeeCardProps> = ({ data, type = 'list' }) => {
           <span className="flex items-start">
             <MdEmail />
             <Typography className="ml-2">{email}</Typography>
+          </span>
+          <span className="flex items-start">
+            <MdOutlinePeople />
+            <Typography className="ml-2">
+              {gender === 'M' ? 'Male' : 'Female'}
+            </Typography>
           </span>
         </div>
       </div>

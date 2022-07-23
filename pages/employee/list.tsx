@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
-import { CircularProgress } from '@mui/material';
 import axios from 'axios';
+import { CircularProgress } from '@mui/material';
 
 import { isEmpty } from '@/utils/helpers';
 import ConditionView from '@/components/ConditionView';
