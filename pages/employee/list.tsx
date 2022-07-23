@@ -1,35 +1,38 @@
-import { FC } from 'react';
-import { Button, Typography } from '@mui/material';
+import { FC, useEffect } from 'react';
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
-import Link from 'next/link';
-import useRequest from '../../utils/hooks/useRequest';
+
+import { isEmpty } from '@/utils/helpers';
+import ConditionView from '@/components/ConditionView';
+import useRequest from '@/utils/hooks/useRequest';
+import { Employee } from '@/components/EmployeeCard/employee-card';
+import EmployeeCard from '@/components/EmployeeCard';
 
 const EmployeeListPage: FC<any> = () => {
-  const { loading, data, error, run } = useRequest(
-    axios.get('https://swivel-backend.herokuapp.com/employee')
-  );
+  const {
+    loading,
+    data,
+    run: getEmployeeList
+  } = useRequest(axios.get('https://swivel-backend.herokuapp.com/employee'));
 
-  const handleClick = () => {
-    run();
-  };
-
-  console.log(loading);
-  console.log(data);
-  console.log(error);
+  useEffect(() => {
+    getEmployeeList();
+  }, [getEmployeeList]);
 
   return (
     <div className="flex justify-center items-center flex-col bg-white shadow-lg p-6 rounded-md">
-      <Typography>Welcome to Swivel Management</Typography>
-      {/* <Link href="/employee/list"> */}
-      <Button
-        className="mt-4"
-        color="primary"
-        variant="contained"
-        onClick={handleClick}
-      >
-        Visit
-      </Button>
-      {/* </Link> */}
+      <ConditionView condition={loading}>
+        <CircularProgress />
+      </ConditionView>
+      <ConditionView condition={!loading && !isEmpty<Array<Employee>>(data)}>
+        <div className="w-full grid gap-8 employee-grid">
+          {data &&
+            data.map((employee: Employee) => {
+              const { _id } = employee;
+              return <EmployeeCard data={employee} key={_id} />;
+            })}
+        </div>
+      </ConditionView>
     </div>
   );
 };
