@@ -1,8 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { getEmployeeList, deleteAnEmployee } from '@/redux/actions';
+import {
+  getEmployeeList,
+  deleteAnEmployee,
+  createNewEmployee,
+  updateEmployee,
+  changeEmployeeDisplay
+} from '@/redux/actions';
 import { Employee } from '@/components/EmployeeCard/employee-card';
-import { changeEmployeeDisplay } from '@/redux/actions';
 
 export type EmployeeState = {
   employees: Array<Employee>;
@@ -11,6 +16,10 @@ export type EmployeeState = {
   display: 'grid' | 'list';
   isDeletingEmployeeId: string;
   isDeleteEmployeeErrorId: string;
+  isCreatingNewEmployee: boolean;
+  isCreatingNewEmployeeError: boolean;
+  isUpdatingEmployee: boolean;
+  isUpdatingEmployeeError: boolean;
 };
 
 const initialState: EmployeeState = {
@@ -19,7 +28,11 @@ const initialState: EmployeeState = {
   isFetchingError: false,
   display: 'grid',
   isDeletingEmployeeId: '',
-  isDeleteEmployeeErrorId: ''
+  isDeleteEmployeeErrorId: '',
+  isCreatingNewEmployee: false,
+  isCreatingNewEmployeeError: false,
+  isUpdatingEmployee: false,
+  isUpdatingEmployeeError: false
 };
 
 export const employeeReducer = createReducer(initialState, (builder) => {
@@ -31,6 +44,7 @@ export const employeeReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getEmployeeList.pending, (state) => {
       state.isFetchingList = true;
+      state.isFetchingError = false;
     })
     .addCase(getEmployeeList.fulfilled, (state, { payload }) => {
       state.isFetchingList = false;
@@ -50,5 +64,27 @@ export const employeeReducer = createReducer(initialState, (builder) => {
     .addCase(deleteAnEmployee.rejected, (state, { meta }) => {
       state.isDeletingEmployeeId = '';
       state.isDeleteEmployeeErrorId = meta.arg;
+    })
+    .addCase(createNewEmployee.pending, (state) => {
+      state.isCreatingNewEmployee = true;
+      state.isCreatingNewEmployeeError = false;
+    })
+    .addCase(createNewEmployee.fulfilled, (state) => {
+      state.isCreatingNewEmployee = false;
+    })
+    .addCase(createNewEmployee.rejected, (state) => {
+      state.isCreatingNewEmployee = false;
+      state.isCreatingNewEmployeeError = true;
+    })
+    .addCase(updateEmployee.pending, (state) => {
+      state.isUpdatingEmployee = true;
+      state.isUpdatingEmployeeError = false;
+    })
+    .addCase(updateEmployee.fulfilled, (state) => {
+      state.isUpdatingEmployee = false;
+    })
+    .addCase(updateEmployee.rejected, (state) => {
+      state.isUpdatingEmployee = false;
+      state.isUpdatingEmployeeError = true;
     });
 });
