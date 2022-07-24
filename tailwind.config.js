@@ -13,7 +13,9 @@ module.exports = {
       colors: {
         swivel: {
           primary: '#00796b',
-          secondary: '#004c40'
+          secondary: '#004c40',
+          red: '#ff5858',
+          green: '#3de625'
         }
       },
       screens: {

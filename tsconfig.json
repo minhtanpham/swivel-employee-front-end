@@ -23,7 +23,9 @@
       "@/public/*": ["public/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/redux/*": ["redux/*"],
+      "@/apis/*": ["apis/*"]
     },
     "incremental": true
   },
