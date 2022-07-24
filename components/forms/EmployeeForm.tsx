@@ -91,7 +91,6 @@ const EmployeeeForm: FC<EmployeeeFormProps> = ({ defaultValues }) => {
                 : 'https://www.w3schools.com/w3images/avatar2.png'
           })
         ).then(() => {
-          router.push('/employee/list');
           reset();
         });
       } else {

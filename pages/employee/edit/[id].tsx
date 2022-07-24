@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
+import Link from 'next/link';
 
 import { getSingleEmployeebyId } from '@/apis/employee';
 import { Employee } from '@/components/EmployeeCard/employee-card';
@@ -21,6 +22,13 @@ const EditEmployeePage: NextPage<{ data: Employee; id: string }> = ({
 
   return (
     <div className="flex justify-center items-center flex-col bg-white shadow-lg p-6 rounded-md">
+      <div className="w-full flex items-center justify-end mb-5">
+        <Link href="/employee/list">
+          <Button className="bg-swivel-primary text-white px-5 rounded-full">
+            List all employee
+          </Button>
+        </Link>
+      </div>
       <Typography className="heading-1 text-swivel-primary mb-7">
         Update employee
       </Typography>

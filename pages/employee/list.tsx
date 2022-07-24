@@ -1,6 +1,7 @@
 import { FC, useEffect, useCallback } from 'react';
-import { CircularProgress, IconButton } from '@mui/material';
+import { CircularProgress, IconButton, Button } from '@mui/material';
 import { MdList, MdGrid3X3 } from 'react-icons/md';
+import Link from 'next/link';
 
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/redux';
 import { isEmpty } from '@/utils/helpers';
@@ -26,13 +27,18 @@ const EmployeeListPage: FC<any> = () => {
 
   return (
     <div className="flex justify-center items-center flex-col bg-white shadow-lg p-6 rounded-md">
-      <div className="w-full flex mb-3 items-center justify-end">
+      <div className="w-full flex items-center justify-end mb-5">
         <IconButton
-          className="bg-swivel-primary text-white"
+          className="bg-swivel-primary text-white mr-4"
           onClick={handleChangeDisplayStyle}
         >
           {display === 'grid' ? <MdGrid3X3 /> : <MdList />}
         </IconButton>
+        <Link href="/employee/add">
+          <Button className="bg-swivel-primary text-white px-5 rounded-full">
+            Add new employee
+          </Button>
+        </Link>
       </div>
       <ConditionView condition={isFetchingError}>Error</ConditionView>
       <ConditionView condition={isFetchingList}>
