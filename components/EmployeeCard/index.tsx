@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, useCallback } from 'react';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
+import { useRouter } from 'next/router';
 
 import { deleteAnEmployee } from '@/redux/actions/employees';
 import { useAppDispatch, useAppSelector } from '@/utils/hooks/redux';
@@ -23,12 +24,17 @@ import { isEmpty } from '@/utils/helpers';
 
 const EmployeeCard: FC<EmployeeCardProps> = ({ data, type = 'list' }) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { isDeletingEmployeeId } = useAppSelector(employeeSelector);
   const { first_name, last_name, number, email, photo, gender, _id } = data;
 
   const handleDeleteEmployee = useCallback(() => {
     if (isEmpty<string>(isDeletingEmployeeId)) dispatch(deleteAnEmployee(_id));
   }, [isDeletingEmployeeId, dispatch, _id]);
+
+  const handleEditEmployee = useCallback(() => {
+    router.push(`/employee/edit/${_id}`);
+  }, [_id, router]);
 
   if (type === 'grid') {
     return (
@@ -67,7 +73,10 @@ const EmployeeCard: FC<EmployeeCardProps> = ({ data, type = 'list' }) => {
               <FiTrash2 />
             )}
           </span>
-          <span className="py-3 flex-1 flex items-center justify-center bg-swivel-green duration-200 transition-all opacity-70 hover:opacity-100 cursor-pointer">
+          <span
+            className="py-3 flex-1 flex items-center justify-center bg-swivel-green duration-200 transition-all opacity-70 hover:opacity-100 cursor-pointer"
+            onClick={handleEditEmployee}
+          >
             <FiEdit />
           </span>
         </div>
@@ -107,7 +116,7 @@ const EmployeeCard: FC<EmployeeCardProps> = ({ data, type = 'list' }) => {
             <TableCell>{gender === 'M' ? 'Male' : 'Female'}</TableCell>
             <TableCell>
               <FiTrash2 className="mr-3" onClick={handleDeleteEmployee} />
-              <FiEdit />
+              <FiEdit onClick={handleEditEmployee} />
             </TableCell>
           </TableRow>
         </TableBody>
