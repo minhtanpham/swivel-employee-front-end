@@ -8,7 +8,6 @@
     "debug": "NODE_OPTIONS='--inspect' next dev",
     "analyze": "ANALYZE=true yarn build",
     "build": "next build",
-    "postbuild": "next-sitemap",
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
