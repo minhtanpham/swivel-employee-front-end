@@ -19,6 +19,7 @@
     "baseUrl": "./",
     "rootDir": "./",
     "paths": {
+      "@/pages/*": ["pages/*"],
       "@/components/*": ["components/*"],
       "@/public/*": ["public/*"],
       "@/styles/*": ["styles/*"],
